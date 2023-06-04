@@ -1,0 +1,12 @@
+/* make a variable for a border-radius of 10px */
+:root {
+  --reg-br: 10px;
+}
+
+body {
+  padding: 0 10px;
+  background-color: #1e2021;
+  min-height: screen;
+  min-width: screen;
+  color: #fff;
+}

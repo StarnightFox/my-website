@@ -1,8 +1,14 @@
-/* make a variable for a border-radius of 10px */
 :root {
   --reg-br: 10px;
+  --small-br: 3px;
   --hover-color: #2e3031;
-  --hover-background: #fff;
+  --hover-background: rgba(255, 255, 255, 0.3);
+  --main-bg: rgb(59, 57, 57);
+  --main-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.65);
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -14,10 +20,4 @@ body {
   min-height: 100vh;
   background-color: #1e2021;
   color: #fff;
-}
-
-@media screen and (min-width: 768px) {
-  body {
-    padding: 0 auto;
-  }
 }

@@ -16,7 +16,11 @@ import { RouterLink, RouterView } from 'vue-router'
       <div id="mainBodyTopRight" />
     </header>
 
-    <RouterView />
+    <router-view v-slot="{ Component }">
+      <transition name="scale" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </section>
 </template>
 
@@ -26,10 +30,14 @@ import { RouterLink, RouterView } from 'vue-router'
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(55, 58, 61);
+  background-color: var(--main-bg);
   width: 90vw;
   border-radius: var(--reg-br);
   overflow: hidden;
+
+  -webkit-box-shadow: var(--main-shadow);
+  -moz-box-shadow: var(--main-shadow);
+  box-shadow: var(--main-shadow);
 }
 
 #mainBodyTop {
@@ -48,7 +56,7 @@ import { RouterLink, RouterView } from 'vue-router'
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  width: 50%;
+  width: 70%;
   height: 100%;
   padding-left: 10px;
   background-color: rgb(59, 57, 57);
@@ -63,27 +71,25 @@ import { RouterLink, RouterView } from 'vue-router'
   border-top: 50px solid transparent;
   border-left: 25px solid rgb(59, 57, 57);
   background-color: transparent;
+  z-index: 2;
 }
 
 #mainBodyTopRight {
   width: 55%;
   height: 100%;
   padding-right: 10px;
-  display: hidden;
+  position: relative;
 }
 
-@media screen and (min-width: 768px) {
-  #mainBody {
-    width: 535px;
-  }
-
-  #mainBodyTopRight {
-    display: flex;
-  }
-
-  #mainBodyTopLeft {
-    width: 45%;
-  }
+#mainBodyTopRight::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 50px solid transparent;
+  border-left: 50px solid rgba(59, 57, 57, 0.5);
+  background-color: transparent;
+  z-index: 1;
 }
 
 #navbar .navbarLink {
@@ -97,11 +103,38 @@ import { RouterLink, RouterView } from 'vue-router'
   border-radius: var(--reg-br);
 }
 
-#navbar .navbarLink:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+#navbar .navbarLinkActive {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.navbarLinkActive {
-  text-decoration: underline;
+#navbar .navbarLink:hover {
+  background-color: var(--hover-background);
+}
+
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.4s ease-in-out;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+@media screen and (min-width: 768px) {
+  #mainBody {
+    width: 50vw;
+  }
+
+  #mainBodyTopLeft {
+    width: 55%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  #mainBodyTopLeft {
+    width: 50%;
+  }
 }
 </style>

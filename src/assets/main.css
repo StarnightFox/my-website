@@ -1,12 +1,23 @@
 /* make a variable for a border-radius of 10px */
 :root {
   --reg-br: 10px;
+  --hover-color: #2e3031;
+  --hover-background: #fff;
 }
 
 body {
-  padding: 0 10px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   background-color: #1e2021;
-  min-height: screen;
-  min-width: screen;
   color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    padding: 0 auto;
+  }
 }
